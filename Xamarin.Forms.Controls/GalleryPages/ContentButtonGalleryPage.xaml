@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:core="clr-namespace:Xamarin.Forms.Core;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             x:Class="Xamarin.Forms.Controls.GalleryPages.ContentButtonGalleryPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="12">
+            <ContentButton>
+                <Label Text="test"/>
+            </ContentButton>
+
+            <ContentButton CornerRadius="12" Margin="12">
+                <Grid>
+                    <BoxView BackgroundColor="Chocolate"/>
+                    <Label Text="test" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+                </Grid>
+            </ContentButton>
+
+            <StackLayout>
+
+                <ContentButton CornerRadius="12" Margin="12" IsToggleModeEnabled="true" IsRadioButtonMode="true">
+                    <ContentButton.ToggleView>
+                        <Grid>
+                            <BoxView BackgroundColor="Green"/>
+                            <Label Text="test" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+                        </Grid>
+                    </ContentButton.ToggleView>
+                    <ContentButton.NormalView>
+                        <Grid>
+                            <BoxView BackgroundColor="MediumSeaGreen"/>
+                            <Label Text="test" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+                        </Grid>
+                    </ContentButton.NormalView>
+                </ContentButton>
+
+                <ContentButton CornerRadius="12" Margin="12" IsToggleModeEnabled="true" IsRadioButtonMode="true">
+                    <ContentButton.ToggleView>
+                        <Grid>
+                            <BoxView BackgroundColor="MediumSeaGreen"/>
+                            <Label Text="test" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+                        </Grid>
+                    </ContentButton.ToggleView>
+                    <ContentButton.NormalView>
+                        <Grid>
+                            <BoxView BackgroundColor="LightCoral"/>
+                            <Label Text="test" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"/>
+                        </Grid>
+                    </ContentButton.NormalView>
+                </ContentButton>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -367,6 +367,7 @@ namespace Xamarin.Forms.Controls
 				new GalleryPageFactory(() => new EntryGallery(), "Entry Gallery - Legacy"),
 				new GalleryPageFactory(() => new FrameGallery (), "Frame Gallery - Legacy"),
 				new GalleryPageFactory(() => new GridGallery(), "Grid Gallery - Legacy"),
+				new GalleryPageFactory(() => new ContentButtonGalleryPage(), "ContentButton Gallery"),
 				new GalleryPageFactory(() => new GroupedListActionsGallery(), "GroupedListActions Gallery - Legacy"),
 				new GalleryPageFactory(() => new GroupedListContactsGallery(), "GroupedList Gallery - Legacy"),
 				new GalleryPageFactory(() => new ImageGallery (), "Image Gallery - Legacy"),
@@ -409,7 +410,7 @@ namespace Xamarin.Forms.Controls
 				new GalleryPageFactory(() => new ViewCellGallery(), "ViewCell Gallery - Legacy"),
 				new GalleryPageFactory(() => new WebViewGallery(), "WebView Gallery - Legacy"),
 				new GalleryPageFactory(() => new BindableLayoutGalleryPage(), "BindableLayout Gallery - Legacy"),
-			};
+		};
 
 		public CorePageView(Page rootPage, NavigationBehavior navigationBehavior = NavigationBehavior.PushAsync)
 		{
