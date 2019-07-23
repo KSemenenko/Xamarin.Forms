@@ -305,6 +305,9 @@ namespace Xamarin.Forms.Controls
 				new GalleryPageFactory(() => new NavBarTitleTestPage(), "Titles And Navbar Windows"),
 				new GalleryPageFactory(() => new PanGestureGalleryPage(), "Pan gesture Gallery"),
 				new GalleryPageFactory(() => new SwipeGestureGalleryPage(), "Swipe gesture Gallery"),
+				new GalleryPageFactory(() => new TouchGestureGalleryPage(), "Touch gesture Gallery"),
+				new GalleryPageFactory(() => new RotateGestureGalleryPage(), "Rotate gesture Gallery"),
+				new GalleryPageFactory(() => new PressGestureGalleryPage(), "Press gesture Gallery"),
 				new GalleryPageFactory(() => new PinchGestureTestPage(), "Pinch gesture Gallery"),
 				new GalleryPageFactory(() => new ClickGestureGalleryPage(), "Click gesture Gallery"),
 				new GalleryPageFactory(() => new AutomationIdGallery(), "AutomationID Gallery"),
@@ -351,7 +354,7 @@ namespace Xamarin.Forms.Controls
 				new GalleryPageFactory(() => new WkWebViewCoreGalleryPage(), "WkWebView Gallery"),
 				new GalleryPageFactory(() => new DynamicViewGallery(), "Dynamic ViewGallery"),
 				//pages
- 				new GalleryPageFactory(() => new RootContentPage ("Content"), "RootPages Gallery"),
+				new GalleryPageFactory(() => new RootContentPage ("Content"), "RootPages Gallery"),
 				new GalleryPageFactory(() => new MasterDetailPageTabletPage(), "MasterDetailPage Tablet Page"),
 				// legacy galleries
 				new GalleryPageFactory(() => new AbsoluteLayoutGallery(), "AbsoluteLayout Gallery - Legacy"),
