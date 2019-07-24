@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Xamarin.Forms
 {
-	public sealed class PressGestureRecognizer : GestureRecognizer
+	public class GestureEventArgs : EventArgs
 	{
+		public TouchEvent TouchEvent { get; private set; }
 	}
 }

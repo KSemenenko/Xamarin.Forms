@@ -3,7 +3,7 @@ using Xamarin.Forms.Core;
 
 namespace Xamarin.Forms.Controls
 {
-	public class PressGestureGalleryPage : ContentPage
+	public class LongPressGestureGalleryPage : ContentPage
 	{
 		public class PressContainer : ContentView
 		{
@@ -14,12 +14,12 @@ namespace Xamarin.Forms.Controls
 
 			public PressContainer()
 			{
-				GestureRecognizers.Add(GetLongPres());
+				GestureRecognizers.Add(GetPres());
 			}
 
-			PressGestureRecognizer GetLongPres()
+			LongPressGestureRecognizer GetPres()
 			{
-				var press = new PressGestureRecognizer();
+				var press = new LongPressGestureRecognizer();
 				//swipe.Swiped += (sender, args) => SwipeLeft?.Invoke(this, new EventArgs());
 				return press;
 			}
@@ -27,7 +27,7 @@ namespace Xamarin.Forms.Controls
 			
 		}
 
-		public PressGestureGalleryPage()
+		public LongPressGestureGalleryPage()
 		{
 			var box = new Image
 			{

@@ -12,6 +12,10 @@ namespace Xamarin.Forms.Platform.Android
 		TapGestureHandler _tapGestureHandler;
 		PanGestureHandler _panGestureHandler;
 		SwipeGestureHandler _swipeGestureHandler;
+		LongPressGestureHandler _longPressGestureHandler;
+		TouchGestureHandler _touchGestureHandler;
+		RotateGestureHandler _rotateGestureHandler;
+
 		bool _isScrolling;		
 		float _lastX;
 		float _lastY;
@@ -25,7 +29,8 @@ namespace Xamarin.Forms.Platform.Android
 		Func<int, Point, bool> _tapDelegate;
 		Func<int, IEnumerable<TapGestureRecognizer>> _tapGestureRecognizers;
 
-		public InnerGestureListener(TapGestureHandler tapGestureHandler, PanGestureHandler panGestureHandler, SwipeGestureHandler swipeGestureHandler)
+		public InnerGestureListener(TapGestureHandler tapGestureHandler, PanGestureHandler panGestureHandler, SwipeGestureHandler swipeGestureHandler,
+			LongPressGestureHandler longPressGestureHandler, TouchGestureHandler touchGestureHandler, RotateGestureHandler rotateGestureHandler)
 		{
 			if (tapGestureHandler == null)
 			{
@@ -42,9 +47,27 @@ namespace Xamarin.Forms.Platform.Android
 				throw new ArgumentNullException(nameof(swipeGestureHandler));
 			}
 
+			if (longPressGestureHandler == null)
+			{
+				throw new ArgumentNullException(nameof(longPressGestureHandler));
+			}
+
+			if (touchGestureHandler == null)
+			{
+				throw new ArgumentNullException(nameof(touchGestureHandler));
+			}
+
+			if (rotateGestureHandler == null)
+			{
+				throw new ArgumentNullException(nameof(rotateGestureHandler));
+			}
+
 			_tapGestureHandler = tapGestureHandler;
 			_panGestureHandler = panGestureHandler;
 			_swipeGestureHandler = swipeGestureHandler;
+			_longPressGestureHandler = longPressGestureHandler;
+			_touchGestureHandler = touchGestureHandler;
+			_rotateGestureHandler = rotateGestureHandler;
 
 			_tapDelegate = tapGestureHandler.OnTap;
 			_tapGestureRecognizers = tapGestureHandler.TapGestureRecognizers;
@@ -57,7 +80,8 @@ namespace Xamarin.Forms.Platform.Android
 
 		bool HasAnyGestures()
 		{
-			return _panGestureHandler.HasAnyGestures() || _tapGestureHandler.HasAnyGestures() || _swipeGestureHandler.HasAnyGestures();
+			return _panGestureHandler.HasAnyGestures() || _tapGestureHandler.HasAnyGestures() || _swipeGestureHandler.HasAnyGestures()
+				|| _longPressGestureHandler.HasAnyGestures() || _touchGestureHandler.HasAnyGestures() || _rotateGestureHandler.HasAnyGestures();
 		}
 
 		// This is needed because GestureRecognizer callbacks can be delayed several hundred milliseconds

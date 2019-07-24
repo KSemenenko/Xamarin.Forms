@@ -144,7 +144,10 @@ namespace Xamarin.Forms.Platform.Android
 				return new List<GestureElement>();
 			}),
 				new PanGestureHandler(() => View, context.FromPixels),
-			    	new SwipeGestureHandler(() => View, context.FromPixels));
+			    new SwipeGestureHandler(() => View, context.FromPixels), 
+				new LongPressGestureHandler(() => View, context.FromPixels),
+				new TouchGestureHandler(() => View, context.FromPixels),
+				new RotateGestureHandler(() => View, context.FromPixels));
 
 			return new TapAndPanGestureDetector(context, listener);
 		}
