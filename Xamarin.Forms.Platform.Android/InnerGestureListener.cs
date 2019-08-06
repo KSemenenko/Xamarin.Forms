@@ -14,7 +14,6 @@ namespace Xamarin.Forms.Platform.Android
 		SwipeGestureHandler _swipeGestureHandler;
 		LongPressGestureHandler _longPressGestureHandler;
 		TouchGestureHandler _touchGestureHandler;
-		RotateGestureHandler _rotateGestureHandler;
 
 		bool _isScrolling;		
 		float _lastX;
@@ -27,10 +26,12 @@ namespace Xamarin.Forms.Platform.Android
 		Func<float, float, int, bool> _scrollDelegate;
 		Func<int, bool> _scrollStartedDelegate;
 		Func<int, Point, bool> _tapDelegate;
+		Func<int, Point, bool> _longPressDelegate;
 		Func<int, IEnumerable<TapGestureRecognizer>> _tapGestureRecognizers;
+		Func<int, IEnumerable<LongPressGestureRecognizer>> _longPressGestureRecognizers;
 
 		public InnerGestureListener(TapGestureHandler tapGestureHandler, PanGestureHandler panGestureHandler, SwipeGestureHandler swipeGestureHandler,
-			LongPressGestureHandler longPressGestureHandler, TouchGestureHandler touchGestureHandler, RotateGestureHandler rotateGestureHandler)
+			LongPressGestureHandler longPressGestureHandler, TouchGestureHandler touchGestureHandler)
 		{
 			if (tapGestureHandler == null)
 			{
@@ -57,17 +58,12 @@ namespace Xamarin.Forms.Platform.Android
 				throw new ArgumentNullException(nameof(touchGestureHandler));
 			}
 
-			if (rotateGestureHandler == null)
-			{
-				throw new ArgumentNullException(nameof(rotateGestureHandler));
-			}
 
 			_tapGestureHandler = tapGestureHandler;
 			_panGestureHandler = panGestureHandler;
 			_swipeGestureHandler = swipeGestureHandler;
 			_longPressGestureHandler = longPressGestureHandler;
 			_touchGestureHandler = touchGestureHandler;
-			_rotateGestureHandler = rotateGestureHandler;
 
 			_tapDelegate = tapGestureHandler.OnTap;
 			_tapGestureRecognizers = tapGestureHandler.TapGestureRecognizers;
@@ -76,12 +72,14 @@ namespace Xamarin.Forms.Platform.Android
 			_scrollCompleteDelegate = panGestureHandler.OnPanComplete;
 			_swipeDelegate = swipeGestureHandler.OnSwipe;
 			_swipeCompletedDelegate = swipeGestureHandler.OnSwipeComplete;
+			_longPressDelegate = longPressGestureHandler.OnLongTap;
+			_longPressGestureRecognizers = longPressGestureHandler.LongPressGestureRecognizers;
 		}
 
 		bool HasAnyGestures()
 		{
 			return _panGestureHandler.HasAnyGestures() || _tapGestureHandler.HasAnyGestures() || _swipeGestureHandler.HasAnyGestures()
-				|| _longPressGestureHandler.HasAnyGestures() || _touchGestureHandler.HasAnyGestures() || _rotateGestureHandler.HasAnyGestures();
+				|| _longPressGestureHandler.HasAnyGestures() || _touchGestureHandler.HasAnyGestures();
 		}
 
 		// This is needed because GestureRecognizer callbacks can be delayed several hundred milliseconds
@@ -142,6 +140,13 @@ namespace Xamarin.Forms.Platform.Android
 		void GestureDetector.IOnGestureListener.OnLongPress(MotionEvent e)
 		{
 			SetStartingPosition(e);
+
+
+
+			if (HasLongPressHandler())
+			{
+				_longPressDelegate(1, new Point(e.GetX(), e.GetY()));
+			}
 		}
 
 		bool GestureDetector.IOnGestureListener.OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
@@ -257,6 +262,13 @@ namespace Xamarin.Forms.Platform.Android
 			if (_tapGestureRecognizers == null)
 				return false;
 			return _tapGestureRecognizers(2).Any();
+		}
+
+		bool HasLongPressHandler()
+		{
+			if (_longPressGestureHandler == null)
+				return false;
+			return _longPressGestureRecognizers(1).Any();
 		}
 
 		bool HasSingleTapHandler()

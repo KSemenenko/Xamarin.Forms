@@ -11,8 +11,8 @@ namespace Xamarin.Forms
 		public static readonly BindableProperty IsLongPressingProperty = BindableProperty.Create(nameof(IsLongPressing), typeof(bool), typeof(TapGestureRecognizer));
 		public static readonly BindableProperty NumberOfTouchesRequiredProperty = BindableProperty.Create(nameof(NumberOfTouchesRequired), typeof(int), typeof(TapGestureRecognizer), 1);
 		public static readonly BindableProperty NumberOfTapsRequiredProperty = BindableProperty.Create(nameof(NumberOfTapsRequired), typeof(int), typeof(TapGestureRecognizer), 1);
-		public static readonly BindableProperty MinimumPressDurationProperty = BindableProperty.Create(nameof(MinimumPressDuration), typeof(double), typeof(TapGestureRecognizer), 0);
-		public static readonly BindableProperty AllowableMovementProperty = BindableProperty.Create(nameof(AllowableMovement), typeof(uint), typeof(TapGestureRecognizer), 0);
+		public static readonly BindableProperty MinimumPressDurationProperty = BindableProperty.Create(nameof(MinimumPressDuration), typeof(double), typeof(TapGestureRecognizer), (double)0.0d);
+		public static readonly BindableProperty AllowableMovementProperty = BindableProperty.Create(nameof(AllowableMovement), typeof(uint), typeof(TapGestureRecognizer), (uint)0);
 
 		public static readonly BindableProperty StartedCommandProperty = BindableProperty.Create(nameof(StartedCommand), typeof(ICommand), typeof(TapGestureRecognizer));
 		public static readonly BindableProperty CancelledCommandProperty = BindableProperty.Create(nameof(CancelledCommand), typeof(ICommand), typeof(TapGestureRecognizer));
@@ -90,6 +90,22 @@ namespace Xamarin.Forms
 		}
 
 		public event EventHandler LongPressed;
-		public event EventHandler<LongPressUpdatedEventArgs> LongPressUpdated;
+		//public event EventHandler<LongPressUpdatedEventArgs> LongPressUpdated;
+
+		public void SendPress(View sender)
+		{
+
+		}
+
+		public void SendRelease()
+		{
+
+		}
+
+		public void SendLongPress()
+		{
+			LongPressed?.Invoke(this,new EventArgs());
+		}
+
 	}
 }

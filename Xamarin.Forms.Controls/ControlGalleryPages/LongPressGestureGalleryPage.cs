@@ -7,21 +7,27 @@ namespace Xamarin.Forms.Controls
 	{
 		public class PressContainer : ContentView
 		{
-			public EventHandler SwipeLeft;
-			public EventHandler SwipeRight;
-			public EventHandler SwipeUp;
-			public EventHandler SwipeDown;
+			public EventHandler LongPress;
 
 			public PressContainer()
 			{
-				GestureRecognizers.Add(GetPres());
+				GestureRecognizers.Add(GetLongPres());
 			}
 
-			LongPressGestureRecognizer GetPres()
+			LongPressGestureRecognizer GetLongPres()
 			{
-				var press = new LongPressGestureRecognizer();
-				//swipe.Swiped += (sender, args) => SwipeLeft?.Invoke(this, new EventArgs());
-				return press;
+				try
+				{
+					var press = new LongPressGestureRecognizer();
+					press.LongPressed += (sender, args) => LongPress?.Invoke(this, new EventArgs());
+					return press;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
+				
 			}
 
 			
@@ -29,7 +35,7 @@ namespace Xamarin.Forms.Controls
 
 		public LongPressGestureGalleryPage()
 		{
-			var box = new Image
+			var box = new BoxView
 			{
 				BackgroundColor = Color.Gray,
 				WidthRequest = 500,
@@ -38,15 +44,12 @@ namespace Xamarin.Forms.Controls
 				HorizontalOptions = LayoutOptions.Center
 			};
 
-			var label = new Label { Text = "Use one finger and swipe inside the gray box." };
+			var label = new Label { Text = "Use one finger to make long press in gray box." };
 
-			var swipeme = new PressContainer { Content = box };
-			swipeme.SwipeLeft += (sender, args) => label.Text = "You swiped left.";
-			swipeme.SwipeRight += (sender, args) => label.Text = "You swiped right.";
-			swipeme.SwipeUp += (sender, args) => label.Text = "You swiped up.";
-			swipeme.SwipeDown += (sender, args) => label.Text = "You swiped down.";
+			var longPress = new PressContainer { Content = box };
+			longPress.LongPress += (sender, args) => label.Text = "You make long press";
 
-			Content = new StackLayout { Children = { label, swipeme }, Padding = new Thickness(20) };
+			Content = new StackLayout { Children = { label, longPress }, Padding = new Thickness(20) };
 		}
 	}
 }

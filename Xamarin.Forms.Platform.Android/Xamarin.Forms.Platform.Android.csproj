@@ -246,7 +246,6 @@
     <Compile Include="Renderers\ViewGroupExtensions.cs" />
     <AndroidResource Include="Resources\Layout\RootLayout.axml" />
     <Compile Include="LongPressGestureHandler.cs" />
-    <Compile Include="RotateGestureHandler.cs" />
     <Compile Include="TouchGestureHandler.cs" />
     <Compile Include="TapGestureHandler.cs" />
     <Compile Include="TextColorSwitcher.cs" />

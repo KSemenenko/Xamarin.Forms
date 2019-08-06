@@ -306,7 +306,6 @@ namespace Xamarin.Forms.Controls
 				new GalleryPageFactory(() => new PanGestureGalleryPage(), "Pan gesture Gallery"),
 				new GalleryPageFactory(() => new SwipeGestureGalleryPage(), "Swipe gesture Gallery"),
 				new GalleryPageFactory(() => new TouchGestureGalleryPage(), "Touch gesture Gallery"),
-				new GalleryPageFactory(() => new RotateGestureGalleryPage(), "Rotate gesture Gallery"),
 				new GalleryPageFactory(() => new LongPressGestureGalleryPage(), "Long Press gesture Gallery"),
 				new GalleryPageFactory(() => new PinchGestureTestPage(), "Pinch gesture Gallery"),
 				new GalleryPageFactory(() => new ClickGestureGalleryPage(), "Click gesture Gallery"),

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Xamarin.Forms.Core
 {
-	public class LongPressUpdatedEventArgs : GestureEventArgs
+	public class LongPressUpdatedEventArgs : TouchEventArgs
 	{
 		public GestureStatus StatusType { get; }
 	}
